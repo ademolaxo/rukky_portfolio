@@ -1,0 +1,652 @@
+html {
+  scrollbar-gutter: stable;
+}
+:root {
+  --ink: #171717;
+  --muted: #747474;
+  --line: #d8d8d3;
+  --paper: #f5f5f1;
+  --acid: #c9f06d;
+  --dark: #1b1e20;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body,
+a,
+button {
+  cursor: url('/cursor_images/spade-black-cursor-24.png') 11 0, auto;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Manrope", Arial, sans-serif;
+}
+.site-header nav a[aria-current="page"] {
+  color: #1c3fa6;
+}
+
+
+.section-pad {
+  padding-right: clamp(1rem, 3.5vw, 4rem);
+  padding-left: clamp(1rem, 3.5vw, 4rem);
+}
+
+/* =============================
+   Header and navigation
+============================= */
+.site-header {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  display: flex;
+  height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.25rem, 5vw, 5.5rem);
+  border-bottom: 1px solid var(--line);
+  background: rgb(245 245 241 / 88%);
+  backdrop-filter: blur(12px);
+  font-size: 0.72rem;
+}
+
+.site-header.pink-header {
+  background: #ff3ebf;
+  border-bottom: 1px solid var(--ink);
+  backdrop-filter: none;
+
+}
+
+.site-header.pink-header nav a {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+
+.site-header.pink-header nav a:hover {
+  opacity: 0.6;
+  color: var(--ink);
+}
+
+.brand {
+  color: var(--ink);
+  font-family: "BBH Bartle", "Manrope", Arial, sans-serif;   /* add this line */
+  font-size: 1.15rem;
+  font-weight: 400;   /* was: 800 — BBH Bartle only ships as 400, same issue as before */
+  letter-spacing: -0.08em;
+  text-decoration: none;
+}
+
+.site-header nav {
+  display: flex;
+  gap: clamp(0.75rem, 2.5vw, 2.5rem);   /* slightly tighter min, since BBH Bartle is wider per-letter */
+}
+
+.site-header nav a {
+  color: var(--muted);
+  font-family: "BBH Bartle", "Manrope", Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.25s ease, opacity 0.2s ease;
+}
+.site-header nav a:hover {
+  opacity: 0.6;
+}
+.site-header nav a:hover,
+.text-link:hover,
+.email-link:hover {
+  color: var(--ink);
+}
+
+.nav-hamburger {
+  display: none;
+}
+
+/* =============================
+   Shared text styles
+============================= */
+.eyebrow {
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.eyebrow > span {
+  margin-right: 1.2rem;
+  color: var(--ink);
+}
+
+/* =============================
+   Hero section
+============================= */
+
+
+body.pink-page {
+  background: #ff3ebf;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vh, 1.5rem);        /* was: clamp(1.5rem, 3vh, 2.5rem) */
+  padding-top: clamp(1rem, 2.5vh, 1.5rem); /* was: clamp(1.5rem, 4vh, 2.5rem) */
+  padding-bottom: clamp(1.5rem, 3vh, 2rem); /* was: clamp(2rem, 4vh, 3rem) */
+  text-align: center;
+}
+.hero-banner {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  aspect-ratio: 3 / 1;
+  overflow: hidden;
+}
+.hero-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-intro {
+  max-width: 100%;   /* was: 640px — let it breathe closer to full width */
+}
+.hero-title {
+  margin: 0 0 1rem;
+  font-family: "BBH Bartle", "Manrope", Arial, sans-serif;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);   /* bumped up since BBH Bartle may still read slightly smaller at the same declared size */
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+  color: var(--ink);
+}
+.hero-section-label {
+  text-align: center;
+  margin-top: clamp(1rem, 3vh, 2rem);       /* add this */
+  margin-bottom: clamp(2.5rem, 5vh, 4rem);  /* was: clamp(1.5rem, 3vh, 2.5rem) */
+  font-family: "BBH Bartle", "Manrope", Arial, sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+.hero-body {
+  margin: 0;
+  font-family: "Manrope", Arial, sans-serif;
+  font-weight: 500;
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--ink);
+}
+.hero-tagline {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.work-blue {
+  background: #1c3fa6;
+  padding-top: clamp(2rem, 4vh, 3rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.status-rotate {
+  transition: opacity 0.4s ease;
+}
+
+.hero-lede {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+  color: var(--ink);
+  transition-delay: 0.2s;
+}
+
+/* =============================
+   Work and project cards
+============================= */
+.work,
+.about {
+  padding-top: clamp(3rem, 6vw, 6rem);
+  
+}
+.work {
+  padding-top: clamp(1rem, 3vh, 2rem);  /* add this if spacing feels too tight after removing the heading */
+}
+
+.heading-note,
+.contact-aside {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem) 1.25rem;
+}
+
+.featured-project {
+  display: block;
+  margin-bottom: clamp(4rem, 8vw, 4rem);
+}
+
+.featured-project .project-image {
+  min-height: min(42vw, 480px);
+}
+
+.project-card {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.project-image {
+  position: relative;
+  min-height: 390px;
+  overflow: hidden;
+  background: #d9d4c8;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.project-art {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.4s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(0.985);
+}
+
+.project-card:hover .project-art {
+  transform: scale(1.05);
+  filter: saturate(1.08);
+}
+
+.image-label {
+  position: absolute;
+  z-index: 2;
+  top: 1rem;
+  left: 1rem;
+  color: #fff;
+  font-family: "DM Mono", monospace;
+  font-size: 0.62rem;
+  text-shadow: 0 1px 4px #0008;
+}
+
+.project-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-meta h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.project-meta p {
+  margin: 0;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+.work-blue .project-meta p {
+  color: #dde4f7;
+  font-weight: 600;   /* was inheriting 400 from base rule */
+}
+.work-blue .project-meta h2 {
+  color: #fff;
+}
+
+.work-blue .project-arrow {
+  color: #fff;
+}
+
+.work-blue .project-meta {
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.project-arrow {
+  font-size: 1.25rem;
+  transition: transform 0.25s ease;
+}
+
+.project-card:hover .project-arrow {
+  transform: translate(4px, -4px);
+}
+
+.project-placeholder .project-image {
+  display: grid;
+  place-items: center;
+  border: 1px dashed #bcbdb7;
+  background: #e9e9e3;
+}
+
+.project-placeholder .image-label {
+  color: var(--muted);
+  text-shadow: none;
+}
+
+.placeholder-plus {
+  color: var(--muted);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 300;
+}
+
+/* =============================
+   About section
+============================= */
+.about {
+  background: #e9e9e3;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 10%;
+  align-items: start;
+}
+
+.about-lede {
+  max-width: 800px;
+  margin: 0;
+  font-size: clamp(1.8rem, 3.2vw, 3.5rem);
+  letter-spacing: -0.055em;
+  line-height: 1.1;
+}
+
+.about-details {
+  padding-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.tag-list span {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid #bcbdb7;
+  border-radius: 30px;
+  color: var(--ink);
+  font-family: "DM Mono", monospace;
+  font-size: 0.65rem;
+}
+
+.text-link {
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+/* =============================
+   Contact and footer
+============================= */
+/* =============================
+   Contact and footer
+============================= */
+.contact {
+  padding-top: clamp(5rem, 10vw, 10rem);
+  padding-bottom: clamp(5rem, 10vw, 10rem);
+  background: #f2f2ed;
+  color: #1b1e20;
+}
+
+.contact .eyebrow {
+  color: var(--muted);
+}
+
+.contact .eyebrow > span {
+  color: var(--ink);
+}
+
+.contact-top {
+  border-color: var(--line);
+}
+
+.contact h2 {
+  margin: 4rem 0 5rem;
+  font-size: clamp(3rem, 8vw, 9rem);
+  font-weight: 600;
+  letter-spacing: -0.09em;
+  line-height: 0.92;
+}
+
+.email-link {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.email-link span {
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+
+.email-link:hover {
+  color: #1c3fa6;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-top: clamp(1.5rem, 3vh, 2.5rem);
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "DM Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.social-links a svg {
+  flex-shrink: 0;
+}
+
+.social-links a:hover {
+  color:#1c3fa6; ;
+}
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.3rem;
+  padding-bottom: 1.3rem;
+  border-top: 1px solid #3b4243;
+  background: var(--dark);
+  color: #8f9691;
+  font-family: "DM Mono", monospace;
+  font-size: 0.62rem;
+}
+
+.site-footer a {
+  color: #f2f2ed;
+  text-decoration: none;
+}
+
+/* =============================
+   Motion
+============================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes lift-in {
+  from {
+    opacity: 0;
+    transform: translateY(115%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =============================
+   Responsive layout
+============================= */
+@media (max-width: 980px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-top {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero-card {
+    justify-self: center;
+    max-width: 220px;
+  }
+
+  .site-header {
+    height: 64px;
+  }
+
+  .site-header nav {
+    position: fixed;
+    z-index: 30;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.1rem;
+    background: var(--paper);
+  }
+
+  .site-header nav.mobile-open {
+    display: flex;
+  }
+
+  .site-header nav a {
+    color: var(--ink);
+    font-size: 1.5rem;
+  }
+
+  .nav-hamburger {
+    position: relative;
+    z-index: 40;
+    display: flex;
+    width: 32px;
+    height: 28px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: 4px;
+    border: 0;
+    background: none;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--ink);
+    transition: all 0.3s ease;
+  }
+
+  .nav-hamburger.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .nav-hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-hamburger.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  .project-grid,
+  .about-layout {
+    display: block;
+  }
+
+  .project-card {
+    display: block;
+    margin-bottom: 3.5rem;
+  }
+
+  .project-image {
+    min-height: 360px;
+  }
+
+  .featured-project .project-image {
+    min-height: 360px;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .heading-note,
+  .contact-aside {
+    max-width: 170px;
+    text-align: right;
+  }
+
+  .site-footer {
+    flex-wrap: wrap;
+  }
+
+  .site-footer span:nth-child(2) {
+    display: none;
+  }
+}
