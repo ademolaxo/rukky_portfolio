@@ -290,6 +290,11 @@
   transform: translate(3px, -3px);
 }
 
+#bold{
+ font-weight: bold;
+ font-size: 15px;
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 720px) {
   .project-hero-grid {
